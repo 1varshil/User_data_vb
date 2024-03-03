@@ -1,0 +1,85 @@
+<h2>User Data Details</h2>
+<div>
+  <!-- <h2>Root Component</h2> -->
+  <!-- Form for adding data -->
+  <button class="btn btn-success" id="addbtn" *ngIf="!formData.id" (click)="toggleFormVisibility()">
+    Add data
+  </button>
+  <span>
+    <p></p>
+  </span>
+  <div>
+    <form
+      #userdata="ngForm"
+      *ngIf="!formHidden"
+      (ngSubmit)="updateData()"
+      class="form-group"
+    >
+      <label>Name:</label>
+      <input
+        type="text"
+        [(ngModel)]="formData.name"
+        name="name"
+        required
+        #name="ngModel"
+      />
+      <span
+        class="namevalid"
+        *ngIf="name.touched && !name.valid"
+        style="color: red"
+      >
+        *Please Enter Name</span
+      ><br /><br />
+      <label>Username:</label>
+      <input
+        type="text"
+        [(ngModel)]="formData.username"
+        name="username"
+        required
+        #username="ngModel"
+      />
+      <span
+        class="unamevalid"
+        *ngIf="username.touched && !username.valid"
+        style="color: red"
+      >
+        *Please Enter UserName</span
+      ><br /><br />
+      <label>Password:</label>
+      <input
+        type="password"
+        [(ngModel)]="formData.password"
+        name="password"
+        required
+        #password="ngModel"
+      />
+      <span
+        class="passvalid"
+        *ngIf="password.touched && !password.valid"
+        style="color: red"
+      >
+        *Please Enter password</span
+      ><br /><br />
+      <button
+        class="btn btn-primary"
+        type="submit"
+        *ngIf="!formData.id"
+        [disabled]="!userdata.valid"
+      >
+        {{updateButtonText}}
+      </button>
+    </form>
+  </div>
+  <!-- <button *ngIf="!formHidden && formData.id" click="updateListing(formData.id)">Update-Edit</button> -->
+
+  <!-- Child2Component for updating -->
+  <app-child2
+    [selectedData]="formData" (updateRequested)="updateListing($event)"
+  ></app-child2>
+  <!-- Child1Component for listing-->
+  <app-child1
+    [data]="dataArray"
+    (editRequested)="handleEditRequest($event)"
+  ></app-child1>
+
+</div>

@@ -1,0 +1,13 @@
+input.ng-invalid.ng-touched{
+    border: 2px solid red;
+}
+btn{
+    padding:25px 25px 25px 25px;
+    margin:30px 30px;
+}
+h2{
+    background-color: grey;
+    color:white;
+    padding:20px 20px;
+    margin:20px;
+}
